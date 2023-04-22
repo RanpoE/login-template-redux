@@ -1,18 +1,26 @@
-import Mock from './containers/mock';
-import io  from "socket.io-client";
-const SERVER = "http://127.0.0.1:2022";
-
-
+// import Mock from './containers/mock';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Index } from "./components/pages";
+import { About } from "./components/pages/about";
+import RootLayout from "./components/pages/RootLayout";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import { Signup } from "./pages";
+// import Mock from "./containers/mock";
 function App() {
-  var socket = io.connect(SERVER);
-  socket.on('connection', () => {
-    console.log(`I'm connected with the back-end`);
-  });
   return (
-    <div className="App">
-      <h1>Hello</h1>
-      <Mock />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" exact element={<Index />} />
+          <Route path="/signup" exact element={<Signup />} />
+          <Route element={<RootLayout />}>
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/about" element={<About />} />
+            </Route>
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

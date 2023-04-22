@@ -32,17 +32,14 @@ const Signup = () => {
             setErrorMessage('Password did not match.')
             return
         }
-        let success = false
         try {
             const signup = await auth.createUserWithEmailAndPassword(form.email, form.password)
             dispatch(authUser({ logged: true, email: signup.user.email }))
-            success = true
+            navigate('/')
         } catch (error) {
             console.error(error.message)
             setErrorMessage(error.message)
         }
-
-        success ? navigate('/') : navigate('/signup')
     }
 
     return (

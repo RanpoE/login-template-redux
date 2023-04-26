@@ -19,7 +19,7 @@ const Main = () => {
   // }
 
   return (
-    <div>
+    <div className=''>
       <Navbar />
       <Gallaries />
     </div>

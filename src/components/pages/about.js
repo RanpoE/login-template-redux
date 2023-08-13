@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
-import { configureStore } from "@reduxjs/toolkit";
-import reducers from "../../redux/reducers";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux'
 
 export const About = () => {
-    const navigator = useNavigate()
-    const store = configureStore({reducer: reducers})
-    
-    const { user } = store.getState()
+
+    const { email } = useSelector(state => state.user)
 
     useEffect(() => {
-        console.log(user)
+        console.log(email)
     })
 
     return (

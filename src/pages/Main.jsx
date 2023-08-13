@@ -5,7 +5,7 @@ import React from 'react'
 // import app from '../utils/firebase'
 import Navbar from '../components/Navbar'
 import Gallaries from '../components/Gallery/Gallaries'
-
+import { useSelector } from 'react-redux'
 const Main = () => {
   // const user = useSelector(state => state.user)
   // const dispatch = useDispatch()
@@ -18,8 +18,10 @@ const Main = () => {
   //   }).catch((err) => console.error(err))
   // }
 
+  const theme = useSelector(state => state.theme)
+
   return (
-    <div className=''>
+    <div className={theme && "dark"}>
       <Navbar />
       <Gallaries />
     </div>

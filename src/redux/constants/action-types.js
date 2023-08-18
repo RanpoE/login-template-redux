@@ -7,4 +7,5 @@ export const ActionTypes = {
     LOGIN: "LOGIN",
     LOGOUT: "LOGOUT",
     SIGN_IN: "SIGN_IN",
+    TOGGLE_DARKMODE: "TOGGLE_DARKMODE",
 }

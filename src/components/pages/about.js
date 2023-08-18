@@ -1,19 +1,20 @@
 import React, { useEffect } from "react";
-import { configureStore } from "@reduxjs/toolkit";
-import reducers from "../../redux/reducers";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux'
 
 export const About = () => {
-    const navigator = useNavigate()
-    const store = configureStore({reducer: reducers})
-    
-    const { user } = store.getState()
+
+    const { email } = useSelector(state => state.user)
 
     useEffect(() => {
-        console.log(user)
+        console.log(email)
     })
 
     return (
-        <h1>This is about page.</h1>
+        <div className="w-full max-w-7xl p-5 pb-10 mb-10 columns-1 space-y-5">
+            <h1 className="text-xl">About page</h1>
+            <p>
+                This is an about page.
+            </p>
+        </div>
     )
 }

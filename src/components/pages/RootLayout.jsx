@@ -5,10 +5,9 @@ import { useSelector } from 'react-redux'
 
 const RootLayout = () => {
     const theme = useSelector(state => state.theme)
-    console.log(theme, "  hththe")
 
     return (
-        <div className={theme && "dark"}>
+        <div className={theme ? "dark" : ""}>
         <Navbar />
         <Outlet />
         </div>

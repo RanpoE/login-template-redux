@@ -4,12 +4,15 @@ import { Index } from "./components/pages";
 import { About } from "./components/pages/about";
 import RootLayout from "./components/pages/RootLayout";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import { useSelector } from "react-redux";
 import { Signup } from "./pages";
 // import Mock from "./containers/mock";
 function App() {
+  const theme = useSelector(state => state.theme);
+  console.log(theme, " theme")
   return (
     <Router>
-      <div className="App">
+      <div className={`App ${theme ? 'dark' : ''}`}>
         <Routes>
           <Route path="/" exact element={<Index />} />
           <Route path="/signup" exact element={<Signup />} />

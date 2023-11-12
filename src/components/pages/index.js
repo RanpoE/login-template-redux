@@ -12,7 +12,7 @@ export const Index = () => {
     useEffect(() => {
         setTimeout(() => {
 
-        }, 1000)
+        }, 500)
         const unsubscribe = auth.onAuthStateChanged(user => {
             // dispatch(authUser(user))
             if (user) {
@@ -26,7 +26,7 @@ export const Index = () => {
             // dispatch(authUser({...multiFactor?.user, logged: true}))
             setTimeout(() => {
                 setLoading(false)
-            }, 2000);
+            }, 1000);
         })
         return unsubscribe;
     }, [dispatch])

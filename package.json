@@ -24,12 +24,15 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended"
     ]
   },
   "browserslist": {
@@ -45,11 +48,26 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-interactions": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/preset-create-react-app": "^7.5.3",
+    "@storybook/react": "^7.5.3",
+    "@storybook/react-webpack5": "^7.5.3",
+    "@storybook/testing-library": "^0.2.2",
     "autoprefixer": "^10.4.14",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "cypress": "^12.10.0",
     "dotenv": "^16.0.3",
+    "eslint-plugin-storybook": "^0.6.15",
     "jest": "^27.5.1",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.3.1"
+    "prop-types": "^15.8.1",
+    "storybook": "^7.5.3",
+    "tailwindcss": "^3.3.1",
+    "webpack": "^5.89.0"
   }
 }

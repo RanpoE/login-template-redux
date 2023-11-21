@@ -1,5 +1,7 @@
 import React from 'react'
 import Gallery from './Gallery'
+import Button from '../Button/Button'
+import { Link } from 'react-router-dom'
 // import { useSelector } from 'react-redux'
 
 
@@ -69,6 +71,9 @@ const Gallaries = () => {
           </div>)
       }
       <section className='w-full max-w  dark:bg-slate-800 dark:shadow-black/10'>
+        <Link to="/create">
+          <Button variant='primary' text='Create post +' />
+        </Link>
         <div className='w-full max-w-7xl p-5 pb-10 mx-auto mb-10 gap-5 columns-3 space-y-5  dark:bg-slate-800 dark:shadow-black/10'>
           {
             imahe.map((img, idx) => <Gallery data={img} key={idx} />)

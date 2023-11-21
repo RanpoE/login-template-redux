@@ -115,7 +115,7 @@ const Navbar = () => {
                                 loading="lazy" />
                         </p>
 
-                        <div className={"absolute right-0 z-10 w-56 mt-4 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg " + `${!toggle && "hidden"}`}>
+                        <div className={`absolute right-0 z-10 w-56 mt-4 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg ${!toggle ? "hidden" : ""}`}>
                             <div className="p-2">
                                 <a
                                     href="/"

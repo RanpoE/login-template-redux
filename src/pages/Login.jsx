@@ -36,7 +36,6 @@ const Login = () => {
     })
   }
 
-
   return (
     <div className='w-full p-5 pb-10 mb-10 columns-1 space-y-5 dark:bg-slate-800'>
       <section className="bg-gray-50 dark:bg-slate-800 dark:shadow-black ">

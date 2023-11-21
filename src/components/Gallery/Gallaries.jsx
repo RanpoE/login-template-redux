@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react'
 import Gallery from './Gallery'
-import { fetchSuccess } from '../../redux/actions/postActions'
-import axios from 'axios'
+// import { useSelector } from 'react-redux'
 
 
 const Gallaries = () => {
-  const dispatch = useDispatch()
+  // const x = useSelector(state => state.post)
+  // console.log(x)
   const images = [
     "https://images.unsplash.com/photo-1681983137356-d8b2bae77153?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
     "https://images.unsplash.com/photo-1682175904468-1958501d39be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
@@ -60,17 +59,6 @@ const Gallaries = () => {
       info: "Ride or die"
     },
   ]
-
-  function getPosts() {
-    return async function (dispatch) {
-      const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
-      dispatch(fetchSuccess(res.data))
-    }
-  }
-
-  useEffect(() => {
-    dispatch(getPosts())
-  }, [dispatch])
 
   return (
     <>

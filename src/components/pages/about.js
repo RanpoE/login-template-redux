@@ -7,7 +7,7 @@ export const About = () => {
 
 
     return (
-        <div className="w-full max-w-7xl p-5 pb-10 mb-10 columns-1 space-y-5">
+        <div className="w-full max-w-7xl pt-20 pb-10 mb-10 columns-1 space-y-5">
             <h1 className="text-xl">Welcome, {email}</h1>
             <p>
                 This is an about page.

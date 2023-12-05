@@ -105,7 +105,7 @@ const CreateForm = () => {
                     <div className='flex flex-col items-center justify-center'>
                         <input className=' w-[300px] h-15 p-2' type='text' name='title' placeholder='Title' onChange={(e) => setForm({ ...form, title: e.target.value })} />
                         <input className=' w-[300px] h-15 p-2' type='text' name='caption' placeholder='Caption' onChange={(e) => setForm({ ...form, caption: e.target.value })} />
-                        <Button type='submit' text='Post' variant='primary w-full mt-10' disabled={disabled} />
+                        <Button type='submit' text='Post' variant={`${disabled? "disabled": "primary"} w-full mt-10`} disabled={disabled} />
                     </div>
                 </form>
 

@@ -3,7 +3,7 @@ import { ActionTypes } from "../constants/action-types";
 
 // Define the initial state
 const initialState = {
-    posts: [],
+    data: [],
     error: null
 };
 
@@ -13,7 +13,7 @@ const postReducer = (state = initialState, action) => {
         case ActionTypes.GET_POSTS_SUCCESS:
             return {
                 ...state,
-                posts: action.payload,
+                data: action.payload,
                 error: null
             };
         case ActionTypes.GET_POSTS_FAILURE:
@@ -47,9 +47,10 @@ const postReducer = (state = initialState, action) => {
                 error: action.payload
             };
         case ActionTypes.DELETE_POST_SUCCESS:
+            console.log("DELETE_POST_SUCCESS")
             return {
                 ...state,
-                posts: state.posts.filter(post => post.id !== action.payload),
+                data: state.data.filter(post => post._id !== action.payload),
                 error: null
             };
         case ActionTypes.DELETE_POST_FAILURE:

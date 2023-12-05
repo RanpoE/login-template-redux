@@ -81,6 +81,7 @@ const CreateForm = () => {
             });
             const response = await request.json();
             console.log(response);
+            window.location.reload();
         } catch (error) {
             alert(error.message);
         } finally {

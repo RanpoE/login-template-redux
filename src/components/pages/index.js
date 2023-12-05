@@ -14,8 +14,8 @@ export const Index = () => {
 
     function getPosts() {
         return async function (dispatch) {
-            const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
-            dispatch(fetchSuccess(res.data))
+            const res = await axios.get('http://localhost:8080/api/v1/gallery')
+            dispatch(fetchSuccess(res.data.data))
         }
     }
 

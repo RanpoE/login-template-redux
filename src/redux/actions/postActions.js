@@ -7,3 +7,10 @@ export const fetchSuccess = (posts) => {
         payload: posts
     }
 }
+
+export const deletePost = (id) => {
+    return {
+        type: ActionTypes.DELETE_POST_SUCCESS,
+        payload: id
+    }
+}

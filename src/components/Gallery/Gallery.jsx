@@ -1,15 +1,20 @@
 import React from 'react'
 import axios from 'axios'
+import { deletePost } from '../../redux/actions/postActions'
+import { useDispatch } from 'react-redux'
 
 const Gallery = ({ data }) => {
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault()
     const id = e.target.id
     console.log(e.target)
-
-    axios.delete(`http://localhost:8080/api/v1/gallery/${id}`)
+    await axios.delete(`http://localhost:8080/api/v1/gallery/${id}`).then(res => {
+      console.log(res)
+      dispatch(deletePost(id))
+    }).catch(err => console.log(err))
   }
 
+  const dispatch = useDispatch()
 
   return (
     <div className='tiles'>
@@ -19,7 +24,7 @@ const Gallery = ({ data }) => {
         <div className='details'>
           <span className='title'>{data.title}</span>
           <span className='info'>{data.caption}
-            <br/><button id={data._id} className='btn' onClick={handleDelete}>Delete</button>
+            <br /><button id={data._id} className='btn text-red-300' onClick={handleDelete}>X</button>
           </span>
         </div>
       </div>

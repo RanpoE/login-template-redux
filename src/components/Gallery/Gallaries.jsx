@@ -34,7 +34,7 @@ const Gallaries = () => {
             </Link>
           </section>) :
 
-          <section className='w-full max-w  dark:bg-slate-800 dark:shadow-black/10'>
+          <section className='w-full max-w pt-20 min-h-screen dark:bg-slate-800 dark:shadow-black/10'>
             <Link to="/create">
               <Button className='absolute top-5 right-5' variant='primary' text={'Add image'} />
             </Link>

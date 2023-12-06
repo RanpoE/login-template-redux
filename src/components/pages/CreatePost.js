@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { FileUploader } from "react-drag-drop-files";
 import { Preview } from '../../assets/images';
 import Button from '../Button/Button';
+import { Link } from 'react-router-dom';
 
 const fileTypes = ["JPEG", "JPG", "PNG", "GIF"];
 
@@ -91,7 +92,10 @@ const CreateForm = () => {
 
     return (
         <div className="dark:bg-slate-800 flex items-center justify-center  h-screen">
-            <div className="flex items-center flex-col bg-white h-auto p-20">
+            <div className="flex items-center flex-col bg-white h-auto p-20"    >
+                <div className='top-0 text-red-600'>
+                    <Link title="back" to='/'>X</Link>
+                </div>
                 <h1 className='text-lg font-bold'>Create a new post</h1>
                 <FileUploader
                     multiple={false}
@@ -105,7 +109,7 @@ const CreateForm = () => {
                     <div className='flex flex-col items-center justify-center'>
                         <input className=' w-[300px] h-15 p-2' type='text' name='title' placeholder='Title' onChange={(e) => setForm({ ...form, title: e.target.value })} />
                         <input className=' w-[300px] h-15 p-2' type='text' name='caption' placeholder='Caption' onChange={(e) => setForm({ ...form, caption: e.target.value })} />
-                        <Button type='submit' text='Post' variant={`${disabled? "disabled": "primary"} w-full mt-10`} disabled={disabled} />
+                        <Button type='submit' text='Post' variant={`${disabled ? "disabled" : "primary"} w-full mt-10`} disabled={disabled} />
                     </div>
                 </form>
 

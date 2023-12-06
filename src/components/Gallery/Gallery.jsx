@@ -24,7 +24,7 @@ const Gallery = ({ data }) => {
         <div className='details'>
           <span className='title'>{data.title}</span>
           <span className='info'>{data.caption}
-            <br /><button id={data._id} className='btn text-red-300' onClick={handleDelete}>X</button>
+            <br /><button title='Remove' id={data._id} className='btn text-red-300' onClick={handleDelete}>X</button>
           </span>
         </div>
       </div>

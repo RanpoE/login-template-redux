@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { FileUploader } from "react-drag-drop-files";
 import { Preview } from '../../assets/images';
 import Button from '../Button/Button';
@@ -16,8 +16,6 @@ const CreateForm = () => {
         photo: '',
     });
     const [disabled, setDisabled] = useState(false); // State variable to disable the upload button
-    const [uploadedCount, setUploadedCount] = useState(0); // State variable to keep track of uploaded file count
-    const [controller, setController] = useState(null); // State variable to store the AbortController
 
     const handleChange = async (file) => {
         setFile(file);
@@ -27,29 +25,6 @@ const CreateForm = () => {
         // await uploadFile(file); // Upload the file
     };
 
-    const uploadFile = async (file) => {
-        const abortController = new AbortController(); // Create an AbortController
-        setController(abortController); // Store the AbortController in state
-
-        try {
-            const base64File = await convertToBase64(file);
-            const formData = { ...form, photo: base64File };
-            const request = await fetch('http://localhost:8080/api/v1/post', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData),
-                signal: abortController.signal // Pass the signal to the request
-            });
-            const response = await request.json();
-            console.log(response);
-            setUploadedCount(prevCount => prevCount + 1); // Increment the uploaded file count
-        } catch (error) {
-            alert(error.message);
-        }
-    };
-
     const convertToBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -57,13 +32,6 @@ const CreateForm = () => {
             reader.onload = () => resolve(reader.result);
             reader.onerror = (error) => reject(error);
         });
-    };
-
-    const handleCancel = () => {
-        if (controller) {
-            controller.abort(); // Abort the request
-            setController(null); // Clear the AbortController from state
-        }
     };
 
     const handleSubmit = async (e) => {

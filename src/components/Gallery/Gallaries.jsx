@@ -3,6 +3,7 @@ import Gallery from './Gallery'
 import Button from '../Button/Button'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import SearchBar from '../SearchBar'
 // import { useSelector } from 'react-redux'
 
 
@@ -11,31 +12,45 @@ const Gallaries = () => {
   // console.log(x)
 
   const posts = useSelector(state => state.post)
+  const [filteredPosts, setFilteredPosts] = React.useState(posts)
   console.log(posts, "ini posts")
+
+  const handleFilter = (e) => {
+    console.log(e, "ini e")
+    if (e === '') {
+      setFilteredPosts(posts)
+      return
+    }
+    const filtered = posts.data.filter(post => {
+      console.log(e.toLowerCase(), "ini e.toLowerCase()")
+      return post.title.toLowerCase().includes(e.toLowerCase())
+    })
+    console.log(filtered, "ini filtered")
+    setFilteredPosts({ data: filtered })
+  }
+
 
   return (
     <>
-      {
-        !posts?.data?.length ? (
-          <section className='w-full dark:bg-slate-800 flex justify-center items-center h-screen'>
-            <Link to="/create">
-              <Button className='absolute top-5 right-5' variant='primary' text={'Add image'} />
-            </Link>
-          </section>) :
 
-          <section className='w-full max-w pt-20 min-h-screen dark:bg-slate-800 dark:shadow-black/10'>
-            <div className='max-w-7xl mx-auto px-5'>
-              <Link to="/create">
-                <Button className='font-bold' variant='primary' text={'Add image'} />
-              </Link>
-            </div>
-            <div className='w-full max-w-7xl p-5 pb-10 mx-auto mb-10 gap-5 columns-3 space-y-5 dark:bg-slate-800 dark:shadow-black/10'>
-              {
-                posts.data.map((img, idx) => <Gallery data={img} key={idx} />)
-              }
-            </div>
-          </section>
-      }
+
+      <section className='w-full max-w pt-20 min-h-screen dark:bg-slate-800 dark:shadow-black/10'>
+        <div className='max-w-7xl mx-auto px-5'>
+          <Link to="/create">
+            <Button className='font-bold' variant='primary' text={'Add image'} />
+          </Link>
+        </div>
+        <div className='max-w-7xl mx-auto px-5'>
+          <SearchBar handleChange={handleFilter} />
+        </div>
+        <div className='w-full max-w-7xl p-5 pb-10 mx-auto mb-10 gap-5 columns-3 space-y-5 dark:bg-slate-800 dark:shadow-black/10'>
+          {
+            filteredPosts?.data?.length ?
+              filteredPosts.data.map((img, idx) => <Gallery data={img} key={idx} />) :
+              <h1 className='dark:text-white'>No result found</h1>
+          }
+        </div>
+      </section>
     </>
   )
 }

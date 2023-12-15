@@ -58,6 +58,12 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 error: action.payload
             };
+        case ActionTypes.SEARCH_POST:
+            return {
+                ...state,
+                data: state.data.filter(post => post.title.toLowerCase().includes(action.payload.toLowerCase())),
+                error: null
+            };
         default:
             return state;
     }

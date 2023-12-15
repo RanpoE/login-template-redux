@@ -14,3 +14,11 @@ export const deletePost = (id) => {
         payload: id
     }
 }
+
+export const searchPost = (text) => {
+    console.log("searchPost")
+    return {
+        type: ActionTypes.SEARCH_POST,
+        payload: text
+    }
+}

@@ -1,10 +1,11 @@
 import React from 'react'
+
+import { useSelector } from 'react-redux'
+
 import Gallery from './Gallery'
 import Button from '../Button/Button'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import CreatePost from '../Modal/CreatePost'
 import SearchBar from '../SearchBar'
-// import { useSelector } from 'react-redux'
 
 
 const Gallaries = () => {
@@ -13,32 +14,31 @@ const Gallaries = () => {
 
   const posts = useSelector(state => state.post)
   const [filteredPosts, setFilteredPosts] = React.useState(posts)
-  console.log(posts, "ini posts")
+  const [openCreateForm, setOpenCreateForm] = React.useState(false)
 
   const handleFilter = (e) => {
     console.log(e, "ini e")
-    if (e === '') {
-      setFilteredPosts(posts)
-      return
-    }
+    // if (e === '') {
+    //   setFilteredPosts(posts)
+    //   return
+    // }
     const filtered = posts.data.filter(post => {
       console.log(e.toLowerCase(), "ini e.toLowerCase()")
       return post.title.toLowerCase().includes(e.toLowerCase())
     })
-    console.log(filtered, "ini filtered")
+
     setFilteredPosts({ data: filtered })
   }
 
+  const handleFormState = () => setOpenCreateForm(prev => !prev)
 
   return (
     <>
-
-
       <section className='w-full max-w pt-20 min-h-screen dark:bg-slate-800 dark:shadow-black/10'>
         <div className='max-w-7xl mx-auto px-5'>
-          <Link to="/create">
-            <Button className='font-bold' variant='primary' text={'Add image'} />
-          </Link>
+          {/* <Link to="/create"> */}
+            <Button className='font-bold' event={handleFormState} variant='primary' text={'Add image'} />
+          {/* </Link> */}
         </div>
         <div className='max-w-7xl mx-auto px-5'>
           <SearchBar handleChange={handleFilter} />
@@ -51,6 +51,7 @@ const Gallaries = () => {
           }
         </div>
       </section>
+      <CreatePost modalState={openCreateForm} handleClose={handleFormState} />
     </>
   )
 }

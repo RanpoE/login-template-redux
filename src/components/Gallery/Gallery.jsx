@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { deletePost } from '../../redux/actions/postActions'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const Gallery = ({ data }) => {
   const handleDelete = async (e) => {
@@ -17,6 +18,7 @@ const Gallery = ({ data }) => {
   const dispatch = useDispatch()
 
   return (
+    <Link to={data.photo} target='_blank' rel='noopener noreferrer'>
     <div className='tiles'>
       <div className="tile">
         <img src={data.photo} alt='gallery' />
@@ -29,6 +31,7 @@ const Gallery = ({ data }) => {
         </div>
       </div>
     </div>
+    </Link>
   )
 }
 

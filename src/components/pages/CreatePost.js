@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
 import { FileUploader } from "react-drag-drop-files";
+
 import { Preview } from '../../assets/images';
 import Button from '../Button/Button';
-import { Link } from 'react-router-dom';
+import { addPostSuccess } from '../../redux/actions/postActions';
+
 
 const fileTypes = ["JPEG", "JPG", "PNG", "GIF"];
 
-const CreateForm = () => {
+const CreateForm = ({ toggleSnack }) => {
     const [file, setFile] = useState(null);
     const [prev, setPrev] = useState(Preview);
     const [form, setForm] = useState({
@@ -49,39 +53,46 @@ const CreateForm = () => {
                 body: JSON.stringify(formData)
             });
             const response = await request.json();
-            console.log(response);
-            window.location.reload();
+            dispatch(addPostSuccess(response))
+            setTimeout(() => {
+                window.location.reload();
+            }, 6000);
+
         } catch (error) {
             alert(error.message);
         } finally {
+            toggleSnack();
+
             setDisabled(prev => !prev)
         }
     };
 
-    return (
-        <div className="dark:bg-slate-800 flex items-center justify-center  h-screen">
-            <div className="flex items-center flex-col bg-white h-auto p-20"    >
-                <div className='top-0 text-red-600'>
-                    <Link title="back" to='/'>X</Link>
-                </div>
-                <h1 className='text-lg font-bold'>Create a new post</h1>
-                <FileUploader
-                    multiple={false}
-                    handleChange={handleChange}
-                    name="file"
-                    types={fileTypes}
-                />
-                <p>{file ? `File name: ${file.name}` : "No files uploaded yet"}</p>
-                <img src={prev} alt="preview" className='h-20 w-20' />
-                <form onSubmit={handleSubmit}>
-                    <div className='flex flex-col items-center justify-center'>
-                        <input className=' w-[300px] h-15 p-2' type='text' name='title' placeholder='Title' onChange={(e) => setForm({ ...form, title: e.target.value })} />
-                        <input className=' w-[300px] h-15 p-2' type='text' name='caption' placeholder='Caption' onChange={(e) => setForm({ ...form, caption: e.target.value })} />
-                        <Button type='submit' text='Post' variant={`${disabled ? "disabled" : "primary"} w-full mt-10`} disabled={disabled} />
-                    </div>
-                </form>
+    const dispatch = useDispatch()
 
-                {/* {controller && (
+    return (
+        <>
+            <div>
+                <div className="flex items-center flex-col bg-white h-auto p-20">
+                    <h1 className='text-lg font-bold'>Create a new post</h1>
+                    <FileUploader
+                        multiple={false}
+                        handleChange={handleChange}
+                        name="file"
+                        types={fileTypes}
+                    />
+                    <p>{file ? `File name: ${file.name}` : "No files uploaded yet"}</p>
+                    <img src={prev} alt="preview" className='h-20 w-20' />
+                    <form onSubmit={handleSubmit}>
+                        <div className='flex flex-col items-center justify-center'>
+                            <input className=' w-[300px] h-15 p-2' type='text' name='title' placeholder='Title' onChange={(e) => {
+                                setForm({ ...form, title: e.target.value });
+                            }} />
+                            <input className=' w-[300px] h-15 p-2' type='text' name='caption' placeholder='Caption' onChange={(e) => setForm({ ...form, caption: e.target.value })} />
+                            <Button type='submit' text='Post' variant={`${disabled ? "disabled" : "primary"} w-full mt-10`} disabled={disabled} />
+                        </div>
+                    </form>
+
+                    {/* {controller && (
                     <>
                         <p>Upload Progress: {controller?.signal?.aborted ? "Aborted" : "In Progress"}</p>
                         <br />
@@ -89,8 +100,9 @@ const CreateForm = () => {
                         <Button onClick={handleCancel} text="Cancel Upload" variant="secondary mt-4" />
                     </>
                 )} */}
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

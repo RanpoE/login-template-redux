@@ -25,7 +25,7 @@ const postReducer = (state = initialState, action) => {
         case ActionTypes.ADD_POST_SUCCESS:
             return {
                 ...state,
-                posts: [...state.posts, action.payload],
+                posts: [...state.data, action.payload],
                 error: null
             };
         case ActionTypes.ADD_POST_FAILURE:

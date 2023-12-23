@@ -22,3 +22,10 @@ export const searchPost = (text) => {
         payload: text
     }
 }
+
+export const addPostSuccess = (post) => {
+    return {
+        type: ActionTypes.ADD_POST_SUCCESS,
+        payload: post
+    }
+}

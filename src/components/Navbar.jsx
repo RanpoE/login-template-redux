@@ -20,7 +20,7 @@ const Navbar = () => {
 
     return (
         <nav
-            className="flex-no-wrap relative flex w-full items-center justify-between bg-neutral-100 py-2 shadow-md shadow-black/5 dark:bg-slate-800 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-4"
+            className="flex-no-wrap absolute flex w-full items-center justify-between bg-neutral-100 py-2 shadow-md shadow-black/5 dark:bg-slate-800 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-4"
             data-te-navbar-ref>
             <div className="flex w-full flex-wrap items-center justify-between px-3">
                 <button
@@ -115,7 +115,7 @@ const Navbar = () => {
                                 loading="lazy" />
                         </p>
 
-                        <div className={"absolute right-0 z-10 w-56 mt-4 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg " + `${!toggle && "hidden"}`}>
+                        <div className={`absolute right-0 z-10 w-56 mt-4 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg ${!toggle ? "hidden" : ""}`}>
                             <div className="p-2">
                                 <a
                                     href="/"

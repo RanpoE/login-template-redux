@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {  Main, Login } from "../../pages";
+import { Main, Login } from "../../pages";
 import { auth } from "../../utils/firebase";
 import { authUser } from "../../redux/actions/userActions";
 import Loader from "../../components/Loader";
+import axios from "axios";
+import { fetchSuccess } from "../../redux/actions/postActions";
 
 export const Index = () => {
     const dispatch = useDispatch()
     const userDetails = useSelector(state => state.user)
     const [loading, setLoading] = useState(true)
+
+    function getPosts() {
+        return async function (dispatch) {
+            const res = await axios.get('http://localhost:8080/api/v1/gallery')
+            dispatch(fetchSuccess(res.data.data))
+        }
+    }
+
     useEffect(() => {
         setTimeout(() => {
 
-        }, 1000)
+        }, 500)
         const unsubscribe = auth.onAuthStateChanged(user => {
             // dispatch(authUser(user))
             if (user) {
@@ -22,11 +32,12 @@ export const Index = () => {
                     displayName: user.displayName,
                     uid: user.uid,
                 }))
+                dispatch(getPosts())
             }
             // dispatch(authUser({...multiFactor?.user, logged: true}))
             setTimeout(() => {
                 setLoading(false)
-            }, 2000);
+            }, 1000);
         })
         return unsubscribe;
     }, [dispatch])

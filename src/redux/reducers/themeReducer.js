@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constants/action-types";
 
 // Take initial state and action
-const initialState = false
+const initialState = true
 
 
 export const themeReducer = (state=initialState, {type}) => {

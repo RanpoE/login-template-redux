@@ -21,7 +21,7 @@ const Main = () => {
   const theme = useSelector(state => state.theme)
 
   return (
-    <div className={theme ? "dark" : ""}>
+    <div className={`${theme ? "dark" : ""}`}>
       <Navbar />
       <Gallaries />
     </div>

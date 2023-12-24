@@ -10,7 +10,7 @@ import { addPostSuccess } from '../../redux/actions/postActions';
 
 const fileTypes = ["JPEG", "JPG", "PNG", "GIF"];
 
-const CreateForm = ({ toggleSnack }) => {
+const CreateForm = ({ toggleSnack, closeModal}) => {
     const [file, setFile] = useState(null);
     const [prev, setPrev] = useState(Preview);
     const [form, setForm] = useState({
@@ -62,7 +62,7 @@ const CreateForm = ({ toggleSnack }) => {
             alert(error.message);
         } finally {
             toggleSnack();
-
+            closeModal();
             setDisabled(prev => !prev)
         }
     };

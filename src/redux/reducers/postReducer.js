@@ -25,7 +25,7 @@ const postReducer = (state = initialState, action) => {
         case ActionTypes.ADD_POST_SUCCESS:
             return {
                 ...state,
-                posts: [...state.data, action.payload],
+                data: [...state.data, action.payload.data],
                 error: null
             };
         case ActionTypes.ADD_POST_FAILURE:
@@ -47,7 +47,6 @@ const postReducer = (state = initialState, action) => {
                 error: action.payload
             };
         case ActionTypes.DELETE_POST_SUCCESS:
-            console.log("DELETE_POST_SUCCESS")
             return {
                 ...state,
                 data: state.data.filter(post => post._id !== action.payload),

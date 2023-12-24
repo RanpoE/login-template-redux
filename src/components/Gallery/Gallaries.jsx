@@ -32,6 +32,10 @@ const Gallaries = () => {
 
   const handleFormState = () => setOpenCreateForm(prev => !prev)
 
+  React.useEffect(() => {
+    setFilteredPosts(posts)
+  }, [posts])
+
   return (
     <>
       <section className='w-full max-w pt-20 min-h-screen dark:bg-slate-800 dark:shadow-black/10'>

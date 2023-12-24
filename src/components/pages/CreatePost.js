@@ -54,9 +54,9 @@ const CreateForm = ({ toggleSnack }) => {
             });
             const response = await request.json();
             dispatch(addPostSuccess(response))
-            setTimeout(() => {
-                window.location.reload();
-            }, 6000);
+            // setTimeout(() => {
+            //     window.location.reload();
+            // }, 6000);
 
         } catch (error) {
             alert(error.message);

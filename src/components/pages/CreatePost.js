@@ -9,8 +9,9 @@ import { addPostSuccess } from '../../redux/actions/postActions';
 
 
 const fileTypes = ["JPEG", "JPG", "PNG", "GIF"];
+const baseURL = process.env.REACT_APP_API_URL;
 
-const CreateForm = ({ toggleSnack, closeModal}) => {
+const CreateForm = ({ toggleSnack, closeModal }) => {
     const [file, setFile] = useState(null);
     const [prev, setPrev] = useState(Preview);
     const [form, setForm] = useState({
@@ -41,11 +42,11 @@ const CreateForm = ({ toggleSnack, closeModal}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDisabled(prev => !prev)
-        if (!form.photo && !form.caption) return;
+        if (!form.photo || !form.caption) return;
         try {
             const base64File = await convertToBase64(file);
             const formData = { ...form, photo: base64File };
-            const request = await fetch('http://localhost:8080/api/v1/gallery', {
+            const request = await fetch(`${baseURL}/api/v1/gallery`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -62,7 +63,9 @@ const CreateForm = ({ toggleSnack, closeModal}) => {
             alert(error.message);
         } finally {
             toggleSnack();
-            closeModal();
+            setTimeout(() => {
+                closeModal()
+            }, 3000);
             setDisabled(prev => !prev)
         }
     };

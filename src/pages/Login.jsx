@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import FormField from '../components/FormField'
+import { useNavigate } from 'react-router-dom'
+
 import { auth } from '../utils/firebase'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { Moon, Sun } from '../assets/images'
-import { authUser } from '../redux/actions/userActions'
-import { useNavigate } from 'react-router-dom'
-import { toggleDarkMode } from '../redux/actions/themeActions'
 import  Button  from '../components/Button/Button'
+import FormField from '../components/FormField'
+
+import { authUser } from '../redux/actions/userActions'
+import { toggleDarkMode } from '../redux/actions/themeActions'
+
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -75,7 +79,7 @@ const Login = () => {
                       <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                     </div>
                   </div>
-                  <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                  <a href='/#' className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                 </div>
                 <Button type='submit' variant="primary w-full" text='Log in' />
                 {/* <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button> */}

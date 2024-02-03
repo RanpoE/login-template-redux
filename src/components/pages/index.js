@@ -11,10 +11,11 @@ export const Index = () => {
     const dispatch = useDispatch()
     const userDetails = useSelector(state => state.user)
     const [loading, setLoading] = useState(true)
+    const baseURL = process.env.REACT_APP_API_URL;
 
     function getPosts() {
         return async function (dispatch) {
-            const res = await axios.get('http://localhost:8080/api/v1/gallery')
+            const res = await axios.get(`${baseURL}/api/v1/gallery`)
             dispatch(fetchSuccess(res.data.data))
         }
     }

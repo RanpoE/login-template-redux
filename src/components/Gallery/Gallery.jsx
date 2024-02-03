@@ -1,18 +1,20 @@
 import React from 'react'
 import axios from 'axios'
-import { deletePost } from '../../redux/actions/postActions'
+
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+import { deletePost } from '../../redux/actions/postActions'
+
+const baseURL = process.env.REACT_APP_API_URL
 
 const Gallery = ({ data }) => {
   const handleDelete = async (e) => {
     e.preventDefault()
     const id = e.target.id
-    console.log(e.target)
-    await axios.delete(`http://localhost:8080/api/v1/gallery/${id}`).then(res => {
-      console.log(res)
+    await axios.delete(`${baseURL}/api/v1/gallery/${id}`).then(res => {
       dispatch(deletePost(id))
-    }).catch(err => console.log(err))
+    }).catch(err => console.error(err))
   }
 
   const dispatch = useDispatch()

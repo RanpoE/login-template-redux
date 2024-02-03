@@ -28,7 +28,7 @@ const CreatePost = ({ modalState, handleClose }) => {
         <>
             <Modal open={modalState} onClose={handleClose}>
                 <Box sx={style}>
-                    <CreateForm toggleSnack={handleOpenSnack} />
+                    <CreateForm toggleSnack={handleOpenSnack} closeModal={handleClose} />
                 </Box>
             </Modal>
             <SnackbarComponent open={openAlert} handleCloseSnack={handleCloseSnack} />

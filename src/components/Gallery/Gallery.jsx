@@ -20,11 +20,11 @@ const Gallery = ({ data }) => {
   const dispatch = useDispatch()
 
   return (
-    <Link to={data.photo} target='_blank' rel='noopener noreferrer'>
+    // <Link to={data.photo} target='_blank' rel='noopener noreferrer'>
+    <Link to={`/detail/${data._id}`} >
     <div className='tiles'>
       <div className="tile">
         <img src={data.photo} alt='gallery' />
-
         <div className='details'>
           <span className='title'>{data.title}</span>
           <span className='info'>{data.caption}
@@ -33,7 +33,7 @@ const Gallery = ({ data }) => {
         </div>
       </div>
     </div>
-    </Link>
+    </Link >
   )
 }
 

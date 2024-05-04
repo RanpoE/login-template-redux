@@ -6,8 +6,9 @@ import { auth } from '../utils/firebase'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Moon, Sun } from '../assets/images'
-import  Button  from '../components/Button/Button'
+import Button from '../components/Button/Button'
 import FormField from '../components/FormField'
+import SnackbarComponent from '../components/Snackbar'
 
 import { authUser } from '../redux/actions/userActions'
 import { toggleDarkMode } from '../redux/actions/themeActions'
@@ -16,14 +17,21 @@ import { toggleDarkMode } from '../redux/actions/themeActions'
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [snackOpen, setSnackOpen] = useState(false)
+  const [message, setMessage] = useState('')
+
   const theme = useSelector(state => state.theme)
   const [form, setForm] = useState({
     email: '',
     password: ''
   })
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
+
+  const handleCloseSnack = () => setSnackOpen(prev => !prev)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -32,7 +40,8 @@ const Login = () => {
       dispatch(authUser({ logged: true, email: res.user.email }))
       navigate('/')
     } catch (error) {
-      console.log(error.message)
+      setMessage(`Login error`)
+      setSnackOpen(true)
     }
     setForm({
       email: '',
@@ -91,6 +100,11 @@ const Login = () => {
           </div>
         </div>
       </section>
+      <SnackbarComponent
+        open={snackOpen}
+        handleCloseSnack={handleCloseSnack}
+        message={message}
+       />
     </div>
   )
 }

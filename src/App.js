@@ -7,6 +7,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import { useSelector } from "react-redux";
 import { Signup } from "./pages";
 import CreateForm from "./components/pages/CreatePost";
+import Detail from "./pages/Detail";
 // import UploadComponent from "./utils/upload";
 // import Mock from "./containers/mock";
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signup" exact element={<Signup />} />
           <Route element={<RootLayout />}>
             <Route element={<ProtectedRoutes />}>
+              <Route path="/detail/:id" element={<Detail />} />
               <Route path="/about" element={<About />} />
               <Route path="/create" element={<CreateForm />} />
             </Route>

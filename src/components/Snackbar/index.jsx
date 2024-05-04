@@ -8,13 +8,13 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const SnackbarComponent = ({ open, handleCloseSnack }) => {
+const SnackbarComponent = ({ open, handleCloseSnack, message }) => {
     return (
         <Snackbar
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={open} autoHideDuration={6000} onClose={handleCloseSnack}>
             <Alert severity="success" sx={{ width: '100%' }}>
-                Post uploaded
+                {message ? message : 'Success'}
             </Alert>
         </Snackbar>
     )

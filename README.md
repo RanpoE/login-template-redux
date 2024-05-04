@@ -8,6 +8,7 @@ REACT_APP_PROJECT_ID=a
 REACT_APP_STORAGE_BUCKET=
 REACT_APP_MESSAGING_SENDER_ID=
 REACT_APP_APP_ID=
+REACT_APP_API_URL=
 ```
 
 Install the dependencies and devDependencies and start the server.

@@ -63,6 +63,12 @@ const postReducer = (state = initialState, action) => {
                 data: state.data.filter(post => post.title.toLowerCase().includes(action.payload.toLowerCase())),
                 error: null
             };
+        case ActionTypes.GET_POST:
+            return {
+                ...state,
+                data: state.data.filter(post => post._id === action.payload),
+                error: null
+            }
         default:
             return state;
     }

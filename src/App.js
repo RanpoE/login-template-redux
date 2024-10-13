@@ -12,7 +12,6 @@ import Detail from "./pages/Detail";
 // import Mock from "./containers/mock";
 function App() {
   const theme = useSelector(state => state.theme);
-  console.log(theme, " theme")
   return (
     <Router>
       <div className={`App ${theme ? 'dark' : ''}`}>

@@ -91,7 +91,7 @@ const CreateForm = ({ toggleSnack, closeModal }) => {
                                 setForm({ ...form, title: e.target.value });
                             }} />
                             <input className=' w-[300px] h-15 p-2' type='text' name='caption' placeholder='Caption' onChange={(e) => setForm({ ...form, caption: e.target.value })} />
-                            <Button type='submit' text='Post' variant={`${disabled ? "disabled" : "primary"} w-full mt-10`} disabled={disabled} />
+                            <Button type='submit' text={disabled ? 'Posting': 'Post'} variant={`${disabled ? "disabled" : "primary"} w-full mt-10`} disabled={disabled} />
                         </div>
                     </form>
 

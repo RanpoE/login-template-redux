@@ -40,7 +40,7 @@ const Login = () => {
       dispatch(authUser({ logged: true, email: res.user.email }))
       navigate('/')
     } catch (error) {
-      setMessage(`Login error`)
+      setMessage('Login error')
       setSnackOpen(true)
     }
     setForm({
@@ -104,7 +104,7 @@ const Login = () => {
         open={snackOpen}
         handleCloseSnack={handleCloseSnack}
         message={message}
-       />
+      />
     </div>
   )
 }

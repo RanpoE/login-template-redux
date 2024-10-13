@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
 import { auth } from '../utils/firebase'
+import { GoogleAuthProvider } from 'firebase/auth'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Moon, Sun } from '../assets/images'
@@ -47,6 +49,16 @@ const Login = () => {
       email: '',
       password: ''
     })
+  }
+
+  const googleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await auth.signInWithPopup(provider)
+    } catch (error) {
+      setMessage(error)
+    }
+
   }
 
   return (
@@ -96,6 +108,9 @@ const Login = () => {
                   Don’t have an account yet? <Link to="/signup" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</Link>
                 </p>
               </form>
+              <section>
+                <button onClick={googleLogin} className='text-white'>Google</button>
+              </section>
             </div>
           </div>
         </div>

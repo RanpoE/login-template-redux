@@ -15,7 +15,7 @@ const style = {
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    padding: 4,
 };
 
 const CreatePost = ({ modalState, handleClose }) => {

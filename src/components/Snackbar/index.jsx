@@ -13,7 +13,7 @@ const SnackbarComponent = ({ open, handleCloseSnack, message }) => {
         <Snackbar
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={open} autoHideDuration={6000} onClose={handleCloseSnack}>
-            <Alert severity="success" sx={{ width: '100%' }}>
+            <Alert severity={message ? 'error' : 'success'} sx={{ width: '100%' }}>
                 {message ? message : 'Success'}
             </Alert>
         </Snackbar>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { FileUploader } from "react-drag-drop-files";
 
@@ -14,8 +14,9 @@ const baseURL = process.env.REACT_APP_API_URL;
 const CreateForm = ({ toggleSnack, closeModal }) => {
     const [file, setFile] = useState(null);
     const [prev, setPrev] = useState(Preview);
+    const userDetails = useSelector(state => state.user)
     const [form, setForm] = useState({
-        user: 'Watashi',
+        user: userDetails.displayName || userDetails.email,
         title: '',
         caption: '',
         photo: '',
@@ -91,7 +92,7 @@ const CreateForm = ({ toggleSnack, closeModal }) => {
                                 setForm({ ...form, title: e.target.value });
                             }} />
                             <input className=' w-[300px] h-15 p-2' type='text' name='caption' placeholder='Caption' onChange={(e) => setForm({ ...form, caption: e.target.value })} />
-                            <Button type='submit' text={disabled ? 'Posting': 'Post'} variant={`${disabled ? "disabled" : "primary"} w-full mt-10`} disabled={disabled} />
+                            <Button type='submit' text={disabled ? 'Posting' : 'Post'} variant={`${disabled ? "disabled" : "primary"} w-full mt-10`} disabled={disabled} />
                         </div>
                     </form>
 

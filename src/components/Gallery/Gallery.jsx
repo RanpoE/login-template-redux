@@ -21,14 +21,14 @@ const Gallery = ({ data }) => {
 
   return (
     // <Link to={data.photo} target='_blank' rel='noopener noreferrer'>
-    <Link to={`/detail/${data._id}`} >
+    <Link to={`/detail/${data?._id}`} >
     <div className='tiles'>
       <div className="tile">
-        <img src={data.photo} alt='gallery' />
+        <img src={data?.photo} alt='gallery' />
         <div className='details'>
-          <span className='title'>{data.title}</span>
-          <span className='info'>{data.caption}
-            <br /><button title='Remove' id={data._id} className='btn text-red-300' onClick={handleDelete}>X</button>
+          <span className='title'>{data?.title}</span>
+          <span className='info'>{data?.caption}
+            <br /><button title='Remove' id={data?._id} className='btn text-red-300' onClick={handleDelete}>X</button>
           </span>
         </div>
       </div>

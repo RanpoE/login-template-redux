@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Main, Login } from "../../pages";
 import { auth } from "../../utils/firebase";
@@ -45,8 +45,8 @@ export const Index = () => {
     }, [dispatch])
 
     return (
-        loading ?
-            <Loader /> :
-            userDetails?.logged ? <Main /> : <Login />
+        <Suspense fallback={Loader}>
+            {userDetails?.logged ? <Main /> : <Login />}
+        </Suspense>
     )
 }

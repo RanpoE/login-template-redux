@@ -9,12 +9,13 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const SnackbarComponent = ({ open, handleCloseSnack, message }) => {
+    const formatMessage = message?.toUpperCase()
     return (
         <Snackbar
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={open} autoHideDuration={6000} onClose={handleCloseSnack}>
             <Alert severity={message ? 'error' : 'success'} sx={{ width: '100%' }}>
-                {message ? message : 'Success'}
+                {message ? formatMessage : 'Success'}
             </Alert>
         </Snackbar>
     )

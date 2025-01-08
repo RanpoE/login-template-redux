@@ -26,9 +26,9 @@ const Gallery = ({ data }) => {
       <div className="tile">
         <img src={data?.photo} alt='gallery' />
         <div className='details'>
+        <span><button title='Remove' id={data?._id} className='btn text-red-300 right-0 absolute' onClick={handleDelete}>X</button></span>
           <span className='title'>{data?.title}</span>
           <span className='info'>{data?.caption}
-            <br /><button title='Remove' id={data?._id} className='btn text-red-300' onClick={handleDelete}>X</button>
           </span>
         </div>
       </div>

@@ -4,10 +4,11 @@ const SearchBar = ({handleChange}) => {
     const [searchTimeout, setSearchTimeout] = useState(null)
 
     const handleSearchChange = (e) => {
+        const { value } = e.target 
         clearTimeout(searchTimeout)
         setSearchTimeout(
             setTimeout(() => {
-                handleChange(e.target.value)
+                handleChange(value)
             }, 500)
         )
     }

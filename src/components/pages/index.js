@@ -7,6 +7,10 @@ import Loader from "../../components/Loader";
 import axios from "axios";
 import { fetchSuccess } from "../../redux/actions/postActions";
 
+import { io } from "socket.io-client";
+
+const socket = io("http://localhost:4000")
+
 export const Index = () => {
     const dispatch = useDispatch()
     const userDetails = useSelector(state => state.user)
@@ -41,7 +45,14 @@ export const Index = () => {
                 setLoading(false)
             }, 1000);
         })
-        return unsubscribe;
+
+        socket.on('peers', (data) => console.log(data))
+
+        return () =>  {
+            socket.off('peers')
+            unsubscribe();
+
+        }
     }, [dispatch])
 
     return (

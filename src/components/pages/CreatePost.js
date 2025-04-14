@@ -40,6 +40,8 @@ const CreateForm = ({ toggleSnack, closeModal }) => {
         });
     };
 
+    const enabled = form.photo && form.caption && form.title
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDisabled(prev => !prev)
@@ -76,7 +78,7 @@ const CreateForm = ({ toggleSnack, closeModal }) => {
     return (
         <>
             <div>
-                <div className="flex items-center flex-col bg-white h-auto p-20">
+                <div className="flex items-center flex-col bg-white h-auto p-20 rounded-md">
                     <h1 className='text-lg font-bold'>Create a new post</h1>
                     <FileUploader
                         multiple={false}
@@ -92,7 +94,7 @@ const CreateForm = ({ toggleSnack, closeModal }) => {
                                 setForm({ ...form, title: e.target.value });
                             }} />
                             <input className=' w-[300px] h-15 p-2' type='text' name='caption' placeholder='Caption' onChange={(e) => setForm({ ...form, caption: e.target.value })} />
-                            <Button type='submit' text={disabled ? 'Posting' : 'Post'} variant={`${disabled ? "disabled" : "primary"} w-full mt-10`} disabled={disabled} />
+                            <Button type='submit' text={disabled ? 'Posting' : 'Post'} variant={`${disabled || !enabled ? "disabled" : "primary"} w-full mt-4`} disabled={!enabled || disabled} />
                         </div>
                     </form>
 

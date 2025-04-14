@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
+import NotFound from '../components/pages/NotFound';
 
 function Detail() {
     const params = useParams();
@@ -9,17 +10,17 @@ function Detail() {
 
     const styleStr = "w-full max-w-7xl pt-20 pb-10 mb-10 space-y-5 mx-auto"
 
-    if (!detail) return (<div className={styleStr}>Invalid ID provided.</div>)
+    if (!detail) return (<NotFound style={styleStr} />)
     return (
-        <div className="flex flex-col md:flex-row pt-20">
+        <div className="flex flex-col md:flex-row pt-20 max-w-7xl mx-auto justify-around">
             <div className='md:w-2/3'>
-                <div class="relative">
+                <div className="h-[80vh] overflow-hidden mb-10" >
                     <a href={detail.photo}>
-                        <img src={detail.photo} alt={detail.caption} class="inset-0 w-full h-[420px] object-cover" loading="lazy" />
+                        <img src={detail.photo} alt={detail.caption} className="inset-0 w-full h-full object-cover" loading="lazy" />
                     </a>
                 </div>
             </div>
-            <div className='md:w-1/3 p-2 text-center'>
+            <div className='md:w-1/3 pt-3 text-center'>
                     <h1 class="text-lg font-semibold text-slate-900">
                         {detail.caption}
                     </h1>

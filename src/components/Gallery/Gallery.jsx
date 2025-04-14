@@ -22,17 +22,19 @@ const Gallery = ({ data }) => {
   return (
     // <Link to={data.photo} target='_blank' rel='noopener noreferrer'>
     <Link to={`/detail/${data?._id}`} >
-    <div className='tiles'>
-      <div className="tile">
-        <img src={data?.photo} alt='gallery' />
-        <div className='details'>
-        <span><button title='Remove' id={data?._id} className='btn text-red-300 right-0 absolute' onClick={handleDelete}>X</button></span>
-          <span className='title'>{data?.title}</span>
-          <span className='info'>{data?.caption}
-          </span>
+      <div className='tiles'>
+        <div className="tile">
+          <img src={data?.photo} alt='gallery' />
+          <div className='details'>
+            <span>
+              <button title='Remove' id={data?._id} className='btn text-red-300 right-0 absolute z-10' onClick={handleDelete}>X</button>
+            </span>
+            <span className='title'>{data?.title}</span>
+            <span className='info'>{data?.caption}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
     </Link >
   )
 }

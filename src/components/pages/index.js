@@ -20,8 +20,17 @@ export const Index = () => {
     function getPosts() {
         return async function (dispatch) {
             setLoading(true)
-            const res = await axios.get(`${baseURL}/api/v1/gallery`)
-            dispatch(fetchSuccess(res.data.data))
+            const allData = []
+            let res = {}
+            let counter = 1
+            do {
+                res = await axios.get(`${baseURL}/api/v1/gallery?page=${counter}`)
+                allData.push(...res.data.data);
+                counter += 1;
+            } while (res.data.data.length > 0);
+            
+            console.log(allData)
+            dispatch(fetchSuccess(allData))
         }
     }
 
